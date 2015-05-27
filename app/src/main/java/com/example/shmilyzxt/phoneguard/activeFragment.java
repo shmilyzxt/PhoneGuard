@@ -62,6 +62,7 @@ public class activeFragment extends Fragment implements View.OnClickListener{
         Toast.makeText(getActivity(),btn.getText(),Toast.LENGTH_SHORT).show();
 
         if(et.getText() != null){
+            //测试
             Log.wtf("logcat",et.getText().toString());
             Bundle bundle = new Bundle();
             bundle.putString("text",et.getText().toString());
