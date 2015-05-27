@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,9 +60,9 @@ public class activeFragment extends Fragment implements View.OnClickListener{
         ft.replace(R.id.active_fragment, new ListFragment());
         ft.addToBackStack("stack");
         ft.commit();
-        Toast.makeText(getActivity(),btn.getText(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),et.getText(),Toast.LENGTH_SHORT).show();
 
-        if(et.getText() != null){
+        if(!TextUtils.isEmpty(et.getText())){
             //测试
             Log.wtf("logcat",et.getText().toString());
             Bundle bundle = new Bundle();
