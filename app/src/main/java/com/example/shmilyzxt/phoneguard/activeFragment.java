@@ -8,6 +8,8 @@ import android.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AnalogClock;
@@ -57,8 +59,9 @@ public class activeFragment extends Fragment implements View.OnClickListener{
        // ac.setVisibility(View.INVISIBLE);
         FragmentManager fr = getFragmentManager();
         FragmentTransaction ft = fr.beginTransaction();
-        ft.replace(R.id.active_fragment, new ListFragment());
-        ft.addToBackStack("stack");
+        ft.hide(this);
+        ft.add(R.id.active_fragment, new ListFragment());
+        ft.addToBackStack(null);
         ft.commit();
         Toast.makeText(getActivity(),et.getText(),Toast.LENGTH_SHORT).show();
 

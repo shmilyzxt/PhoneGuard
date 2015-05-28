@@ -3,4 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/mobile" android:showAsAction="always"
+        android:icon="@drawable/mboile"
+        android:title="移动"/>
+    <item android:id="@+id/telecom" android:showAsAction="never"
+        android:icon="@drawable/telecom"
+        android:title="电信"/>
+    <item android:id="@+id/sig" android:showAsAction="always"
+        android:icon="@drawable/sig"
+        android:title="4G"/>
+
+    <!--ActinView之SearchView-->
+    <item android:title="搜索" android:id="@+id/menu_search"
+        android:showAsAction="always"
+        android:actionViewClass="android.widget.SearchView"/>
 </menu>
