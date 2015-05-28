@@ -5,4 +5,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--自定义ActionBar样式：开始-->
+    <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#f4842d</item>
+    </style>
+    <!--自定义ActionBar样式：结束-->
+
 </resources>

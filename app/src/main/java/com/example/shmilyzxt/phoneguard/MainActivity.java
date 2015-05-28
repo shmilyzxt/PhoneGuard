@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AnalogClock;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +57,9 @@ public class MainActivity extends Activity implements View.OnClickListener ,
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem shareMenu = menu.findItem(R.id.menu_actionprovider);
+        ShareActionProvider shareActionProvider =(ShareActionProvider) shareMenu.getActionProvider();
+        shareActionProvider.setShareIntent(createShareIntent());
        // Toast.makeText(MainActivity.this, "options menu created", Toast.LENGTH_LONG).show();
         return true;
     }
@@ -83,7 +88,6 @@ public class MainActivity extends Activity implements View.OnClickListener ,
         }
     }
 
-
     /*
     设置overflow里的menu item显示图标
      */
@@ -102,4 +106,13 @@ public class MainActivity extends Activity implements View.OnClickListener ,
         return super.onMenuOpened(featureId, menu);
     }
 
+    /*
+    为ActionBar的ShareActionProvider创建要分享启动的intent
+     */
+    private Intent createShareIntent(){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("image/*");
+        return intent;
     }
+
+}

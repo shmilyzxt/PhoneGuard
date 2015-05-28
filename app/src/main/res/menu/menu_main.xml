@@ -1,10 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/mobile" android:showAsAction="always"
+    <item android:id="@+id/mobile" android:showAsAction="ifRoom|collapseActionView"
         android:icon="@drawable/mboile"
         android:title="移动"/>
     <item android:id="@+id/telecom" android:showAsAction="never"
@@ -18,4 +19,9 @@
     <item android:title="搜索" android:id="@+id/menu_search"
         android:showAsAction="always"
         android:actionViewClass="android.widget.SearchView"/>
+    <!--ActionBar之ActionProvider-->
+    <item android:id="@+id/menu_actionprovider"
+        android:actionProviderClass="android.widget.ShareActionProvider"
+        android:showAsAction="always"
+        android:title="分享"/>
 </menu>
