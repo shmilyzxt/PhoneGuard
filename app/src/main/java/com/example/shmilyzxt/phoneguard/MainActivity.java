@@ -15,7 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity implements View.OnClickListener ,ListFragment.OnFragmentInteractionListener {
+public class MainActivity extends Activity implements View.OnClickListener ,
+        ListFragment.OnFragmentInteractionListener {
 
     private TextView tv;
     private AnalogClock ac;
@@ -43,7 +44,7 @@ public class MainActivity extends Activity implements View.OnClickListener ,List
 
     @Override
     public void onFragmentInteraction(String id) {
-
+        Toast.makeText(MainActivity.this,id,Toast.LENGTH_LONG).show();
     }
 
     @Override
