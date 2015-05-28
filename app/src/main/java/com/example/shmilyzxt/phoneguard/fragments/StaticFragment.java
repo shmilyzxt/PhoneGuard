@@ -1,4 +1,4 @@
-package com.example.shmilyzxt.phoneguard;
+package com.example.shmilyzxt.phoneguard.fragments;
 
 
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.shmilyzxt.phoneguard.R;
 
 
 /**

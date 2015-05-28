@@ -12,7 +12,7 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.example.shmilyzxt.phoneguard.StaticFragment"
+        android:name="com.example.shmilyzxt.phoneguard.fragments.StaticFragment"
         android:id="@+id/fragment_static"
         tools:layout="@layout/fragment_static"
         />

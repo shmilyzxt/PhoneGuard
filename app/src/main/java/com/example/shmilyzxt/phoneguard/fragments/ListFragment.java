@@ -1,4 +1,4 @@
-package com.example.shmilyzxt.phoneguard;
+package com.example.shmilyzxt.phoneguard.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
+import com.example.shmilyzxt.phoneguard.R;
 import com.example.shmilyzxt.phoneguard.dummy.DummyContent;
 
 /**

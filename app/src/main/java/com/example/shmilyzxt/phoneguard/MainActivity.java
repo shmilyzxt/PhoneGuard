@@ -1,13 +1,9 @@
 package com.example.shmilyzxt.phoneguard;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +13,9 @@ import android.widget.AnalogClock;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.shmilyzxt.phoneguard.fragments.ListFragment;
+import com.example.shmilyzxt.phoneguard.fragments.activeFragment;
 
 import java.lang.reflect.Method;
 

@@ -13,7 +13,8 @@
         android:title="电信"/>
     <item android:id="@+id/sig" android:showAsAction="always"
         android:icon="@drawable/sig"
-        android:title="4G"/>
+        android:title="4G"
+        android:actionProviderClass="com.example.shmilyzxt.phoneguard.ActionProvider.MyActionProvider"/>
 
     <!--ActinView之SearchView-->
     <item android:title="搜索" android:id="@+id/menu_search"

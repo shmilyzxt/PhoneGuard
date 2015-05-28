@@ -1,4 +1,4 @@
-package com.example.shmilyzxt.phoneguard;
+package com.example.shmilyzxt.phoneguard.fragments;
 
 
 import android.app.FragmentManager;
@@ -8,14 +8,14 @@ import android.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AnalogClock;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.shmilyzxt.phoneguard.R;
 
 
 /**
