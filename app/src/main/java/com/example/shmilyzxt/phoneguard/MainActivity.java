@@ -1,6 +1,8 @@
 package com.example.shmilyzxt.phoneguard;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -11,10 +13,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AnalogClock;
 import android.widget.ShareActionProvider;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.ActionBar.Tab;
 
 import com.example.shmilyzxt.phoneguard.fragments.ListFragment;
+import com.example.shmilyzxt.phoneguard.fragments.StaticFragment;
 import com.example.shmilyzxt.phoneguard.fragments.activeFragment;
 
 import java.lang.reflect.Method;
@@ -33,12 +38,35 @@ public class MainActivity extends Activity implements View.OnClickListener ,
         TextView tv = (TextView)findViewById(R.id.tv);
         tv.setOnClickListener(this);
 
+        /*
         activeFragment fragment = new activeFragment();
         FragmentManager fr = getFragmentManager();
         FragmentTransaction ft = fr.beginTransaction();
        // ft.add(R.id.active_fragment,fragment);
         ft.add(R.id.active_fragment, fragment);
         ft.commit();
+        */
+
+        StaticFragment staticFragment = new StaticFragment();
+        activeFragment activeFragment = new activeFragment();
+        ListFragment listFragment = new ListFragment();
+
+        ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        Tab tab1 = actionBar.newTab()
+                .setText("tab1")
+                    .setIcon(R.drawable.sig)
+                .setTabListener(new MyTabListener(this,staticFragment.getClass()));
+        Tab tab2 = actionBar.newTab().setText("tab2")
+                    .setIcon(R.drawable.mboile)
+                .setTabListener(new MyTabListener(this,activeFragment.getClass()));
+        Tab tab3 = actionBar.newTab().setText("tab3")
+                .setIcon(R.drawable.telecom)
+                .setTabListener(new MyTabListener(this, listFragment.getClass()));
+
+        actionBar.addTab(tab1);
+        actionBar.addTab(tab2);
+        actionBar.addTab(tab3);
     }
 
     @Override
@@ -112,6 +140,43 @@ public class MainActivity extends Activity implements View.OnClickListener ,
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("image/*");
         return intent;
+    }
+
+    /*
+    TabListener的实现类
+     */
+    class MyTabListener<T extends Fragment> implements ActionBar.TabListener{
+
+        private final Class<T> tClass;
+        private Fragment fg;
+        final  private  Activity mActivity;
+
+        public MyTabListener(Activity activity,Class<T> fragmentClass){
+            tClass = fragmentClass;
+            mActivity = activity;
+        }
+
+        @Override
+        public void onTabSelected(Tab tab, FragmentTransaction ft) {
+            if(fg == null){
+                fg = Fragment.instantiate(mActivity,tClass.getName());
+                ft.add(R.id.fragment_content,fg);
+            }else {
+                ft.attach(fg);
+            }
+        }
+
+        @Override
+        public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+            if (fg != null) {
+               ft.detach(fg);
+            }
+        }
+
+        @Override
+        public void onTabReselected(Tab tab, FragmentTransaction ft) {
+            Toast.makeText(mActivity,tab.toString()+" reselected",Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

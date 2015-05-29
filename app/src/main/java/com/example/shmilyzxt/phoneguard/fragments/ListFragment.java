@@ -101,7 +101,7 @@ public class ListFragment extends Fragment implements AbsListView.OnItemClickLis
         super.onAttach(activity);
         try {
             mListener = (OnFragmentInteractionListener) activity;
-            Toast.makeText(activity,"activeFragment绑定到"+activity.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,"ListFragment绑定到"+activity.toString(),Toast.LENGTH_SHORT).show();
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");

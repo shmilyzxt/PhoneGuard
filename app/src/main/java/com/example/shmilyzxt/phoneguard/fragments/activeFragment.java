@@ -60,7 +60,7 @@ public class activeFragment extends Fragment implements View.OnClickListener{
         FragmentManager fr = getFragmentManager();
         FragmentTransaction ft = fr.beginTransaction();
         ft.hide(this);
-        ft.add(R.id.active_fragment, new ListFragment());
+        ft.add(R.id.fragment_content, new ListFragment());
         ft.addToBackStack(null);
         ft.commit();
         Toast.makeText(getActivity(),et.getText(),Toast.LENGTH_SHORT).show();

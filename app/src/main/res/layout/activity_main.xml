@@ -9,17 +9,10 @@
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:id="@+id/tv"/>
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.example.shmilyzxt.phoneguard.fragments.StaticFragment"
-        android:id="@+id/fragment_static"
-        tools:layout="@layout/fragment_static"
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/active_fragment"
+        android:id="@+id/fragment_content"
         android:background="#0fffff"
         android:orientation="vertical">
         <AnalogClock
