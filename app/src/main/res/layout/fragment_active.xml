@@ -1,21 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="com.example.shmilyzxt.phoneguard.fragments.activeFragment"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:weightSum="3">
 
     <!-- TODO: Update blank fragment layout -->
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="please enter something"
-        android:id="@+id/active_fragment_edit"/>
+        android:hint="输入"
+        android:id="@+id/active_fragment_edit"
+        android:layout_weight="1"/>
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="hello"
         android:id="@+id/active_fragment_button"
-        android:layout_gravity="right"
-        style="@android:style/ButtonBar" />
+        android:layout_gravity="top"
+        android:layout_weight="1"/>
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="输入"
+        android:id="@+id/active_fragment_edit2"
+        android:layout_weight="1"
+        android:layout_gravity="top"/>
 
 </LinearLayout>
+<!--注意weightSum；layout_weight和layout_gravity的使用-->
