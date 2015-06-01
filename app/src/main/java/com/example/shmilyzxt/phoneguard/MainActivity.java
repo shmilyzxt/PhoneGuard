@@ -134,6 +134,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
      */
     private void initView(){
         TextView tv = (TextView)findViewById(R.id.tv);
+        tv.setVisibility(View.INVISIBLE);
         tv.setOnClickListener(this);
         staticFragment = new StaticFragment();
         activeFragment = new activeFragment();
