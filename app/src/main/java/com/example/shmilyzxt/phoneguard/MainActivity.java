@@ -1,12 +1,15 @@
 package com.example.shmilyzxt.phoneguard;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,50 +26,34 @@ import com.example.shmilyzxt.phoneguard.fragments.StaticFragment;
 import com.example.shmilyzxt.phoneguard.fragments.activeFragment;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class MainActivity extends Activity implements View.OnClickListener ,
+public class MainActivity extends FragmentActivity implements View.OnClickListener ,
         ListFragment.OnFragmentInteractionListener {
 
     private TextView tv;
     private AnalogClock ac;
+    private ViewPager viewPager;
+    private StaticFragment staticFragment;
+    private activeFragment activeFragment;
+    private ListFragment listFragment;
+    private ActionBar actionBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tv = (TextView)findViewById(R.id.tv);
-        tv.setOnClickListener(this);
-
-        /*
-        activeFragment fragment = new activeFragment();
-        FragmentManager fr = getFragmentManager();
-        FragmentTransaction ft = fr.beginTransaction();
-       // ft.add(R.id.active_fragment,fragment);
-        ft.add(R.id.active_fragment, fragment);
-        ft.commit();
-        */
-
-        StaticFragment staticFragment = new StaticFragment();
-        activeFragment activeFragment = new activeFragment();
-        ListFragment listFragment = new ListFragment();
-
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        Tab tab1 = actionBar.newTab()
-                .setText("tab1")
-                    .setIcon(R.drawable.sig)
-                .setTabListener(new MyTabListener(this,staticFragment.getClass()));
-        Tab tab2 = actionBar.newTab().setText("tab2")
-                    .setIcon(R.drawable.mboile)
-                .setTabListener(new MyTabListener(this,activeFragment.getClass()));
-        Tab tab3 = actionBar.newTab().setText("tab3")
-                .setIcon(R.drawable.telecom)
-                .setTabListener(new MyTabListener(this, listFragment.getClass()));
-
-        actionBar.addTab(tab1);
-        actionBar.addTab(tab2);
-        actionBar.addTab(tab3);
+        //初始化控件
+        initView();
+        //viewPager实现滑动
+        setViewPager();
+        //ActionBar的添加(要在viewpager的后面，不知道为什么)
+        configActionBar();
+       //给actonbar添加tabs
+        setTabs();
     }
 
     @Override
@@ -143,39 +130,131 @@ public class MainActivity extends Activity implements View.OnClickListener ,
     }
 
     /*
-    TabListener的实现类
+    初始化控件
+     */
+    private void initView(){
+        TextView tv = (TextView)findViewById(R.id.tv);
+        tv.setOnClickListener(this);
+        staticFragment = new StaticFragment();
+        activeFragment = new activeFragment();
+        listFragment = new ListFragment();
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
+        actionBar = getActionBar();
+
+    }
+    /*
+    设置viewPager
+     */
+    private void setViewPager(){
+        List<Fragment> l = new ArrayList<Fragment>(3);
+        l.add(staticFragment);
+        l.add(activeFragment);
+        l.add(listFragment);
+        viewPager.setAdapter(new MyFragemntAdapter(getSupportFragmentManager(),l));
+        viewPager.setOnPageChangeListener(new MyPageChangeLisenter());
+    }
+
+    /*
+    设置anctionbar
+     */
+    private void configActionBar(){
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+    }
+
+    /*
+    添加并设置actionbar的tabs
+     */
+    private void setTabs(){
+        Tab tab1 = actionBar.newTab()
+                .setText("tab1")
+                .setIcon(R.drawable.sig)
+                .setTabListener(new MyTabListener(this,staticFragment.getClass()));
+        Tab tab2 = actionBar.newTab().setText("tab2")
+                .setIcon(R.drawable.mboile)
+                .setTabListener(new MyTabListener(this,activeFragment.getClass()));
+        Tab tab3 = actionBar.newTab().setText("tab3")
+                .setIcon(R.drawable.telecom)
+                .setTabListener(new MyTabListener(this, listFragment.getClass()));
+
+        actionBar.addTab(tab1);
+        actionBar.addTab(tab2);
+        actionBar.addTab(tab3);
+    }
+
+    /*
+    ActionBar tab TabListener的实现类
      */
     class MyTabListener<T extends Fragment> implements ActionBar.TabListener{
 
         private final Class<T> tClass;
         private Fragment fg;
-        final  private  Activity mActivity;
+        final  private  FragmentActivity mActivity;
 
-        public MyTabListener(Activity activity,Class<T> fragmentClass){
+        public MyTabListener(FragmentActivity activity,Class<T> fragmentClass){
             tClass = fragmentClass;
             mActivity = activity;
         }
 
         @Override
         public void onTabSelected(Tab tab, FragmentTransaction ft) {
-            if(fg == null){
-                fg = Fragment.instantiate(mActivity,tClass.getName());
-                ft.add(R.id.fragment_content,fg);
-            }else {
-                ft.attach(fg);
-            }
+           viewPager.setCurrentItem(tab.getPosition());
         }
 
         @Override
         public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-            if (fg != null) {
-               ft.detach(fg);
-            }
+
         }
 
         @Override
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
             Toast.makeText(mActivity,tab.toString()+" reselected",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /*
+    ViewPager的OnPageChangeLister接口实现类
+     */
+    class MyPageChangeLisenter implements ViewPager.OnPageChangeListener{
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            final ActionBar actionBar = getActionBar();
+            actionBar.setSelectedNavigationItem(position);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    }
+
+    /*
+    FragmentAdapter的实现类
+     */
+    class MyFragemntAdapter extends FragmentPagerAdapter{
+
+        List<Fragment> fragmentList;
+
+        public MyFragemntAdapter(FragmentManager myFm,List<Fragment> list){
+            super(myFm);
+            fragmentList = list;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
         }
     }
 

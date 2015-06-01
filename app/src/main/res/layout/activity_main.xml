@@ -12,7 +12,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fragment_content"
         android:background="#0fffff"
         android:orientation="vertical">
         <AnalogClock
@@ -20,7 +19,21 @@
             android:layout_height="wrap_content"
             android:id="@+id/analogClock"
             android:layout_gravity="center_horizontal" />
-
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_content"
+        android:background="#fff000"
+        android:orientation="vertical">
+
+        <android.support.v4.view.ViewPager
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/viewPager"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
 </LinearLayout>
