@@ -35,7 +35,7 @@ public class activeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the btn_quickoption_selector for this fragment
         View view = inflater.inflate(R.layout.fragment_active, container, false);
         btn = (Button)view.findViewById(R.id.active_fragment_button);
         btn.setOnClickListener(this);

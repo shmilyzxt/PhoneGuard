@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.shmilyzxt.phoneguard.fragments.StaticFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment btn_quickoption_selector -->
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
 

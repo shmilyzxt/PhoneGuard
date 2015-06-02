@@ -21,13 +21,15 @@
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
-    <LinearLayout
+    <!--pagerView的滑动的layout-->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:id="@+id/fragment_content"
         android:background="#fff000"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <android.support.v4.view.ViewPager
@@ -37,5 +39,24 @@
             android:layout_gravity="center"
             />
 
-    </LinearLayout>
+    </FrameLayout>
+
+    <!--底部fragmentTabHost的layout-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"></FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/quick_option_iv"
+            android:src="@drawable/btn_quickoption_selector"/>
+    </FrameLayout>
+
+
 </LinearLayout>

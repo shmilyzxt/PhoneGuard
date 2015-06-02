@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:weightSum="3">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragment btn_quickoption_selector -->
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
