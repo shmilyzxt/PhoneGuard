@@ -255,7 +255,7 @@ public class MainActivity extends FragmentActivity implements ListFragment.OnFra
 
         @Override
         public void onTabReselected(Tab tab, FragmentTransaction ft) {
-            Toast.makeText(mActivity,tab.toString()+" reselected",Toast.LENGTH_SHORT).show();
+
         }
     }
 
