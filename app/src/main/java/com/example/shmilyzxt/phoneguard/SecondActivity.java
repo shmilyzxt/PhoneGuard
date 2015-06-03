@@ -1,16 +1,26 @@
 package com.example.shmilyzxt.phoneguard;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ShareActionProvider;
+import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Fragment;
 
+import com.example.shmilyzxt.phoneguard.fragments.ListFragment;
+import com.example.shmilyzxt.phoneguard.fragments.StaticFragment;
+import com.example.shmilyzxt.phoneguard.fragments.activeFragment;
 
-public class SecondActivity extends ActionBarActivity {
+
+public class SecondActivity extends FragmentActivity implements  ListFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +49,10 @@ public class SecondActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
+        Toast.makeText(SecondActivity.this,id,Toast.LENGTH_LONG).show();
     }
 }

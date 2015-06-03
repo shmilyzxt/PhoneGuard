@@ -8,38 +8,45 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AnalogClock;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ShareActionProvider;
 import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ActionBar.Tab;
 
+import com.example.shmilyzxt.phoneguard.fragments.FourFragment;
 import com.example.shmilyzxt.phoneguard.fragments.ListFragment;
 import com.example.shmilyzxt.phoneguard.fragments.StaticFragment;
 import com.example.shmilyzxt.phoneguard.fragments.activeFragment;
+import com.example.shmilyzxt.phoneguard.fragments.ThreeFragment;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener ,
-        ListFragment.OnFragmentInteractionListener {
+public class MainActivity extends FragmentActivity implements ListFragment.OnFragmentInteractionListener {
 
-    private TextView tv;
-    private AnalogClock ac;
     private ViewPager viewPager;
     private StaticFragment staticFragment;
     private activeFragment activeFragment;
     private ListFragment listFragment;
+    private ThreeFragment threeFragment;
     private ActionBar actionBar;
+    private FragmentTabHost tabHost;
+    private FourFragment fourFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +61,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         configActionBar();
        //给actonbar添加tabs
         setTabs();
+        //设置tabHost
+        setTabHost();
     }
 
-    @Override
-    public void onClick(View v) {
-        tv = (TextView)findViewById(R.id.tv);
-        Toast.makeText(MainActivity.this,tv.getText(),Toast.LENGTH_LONG).show();
-    }
 
     @Override
     public void onFragmentInteraction(String id) {
@@ -133,25 +137,25 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     初始化控件
      */
     private void initView(){
-        TextView tv = (TextView)findViewById(R.id.tv);
-        tv.setVisibility(View.INVISIBLE);
-        tv.setOnClickListener(this);
         staticFragment = new StaticFragment();
         activeFragment = new activeFragment();
-        listFragment = new ListFragment();
+        threeFragment = new ThreeFragment();
+        fourFragment = new FourFragment();
         viewPager = (ViewPager)findViewById(R.id.viewPager);
         actionBar = getActionBar();
+        tabHost = (FragmentTabHost)findViewById(R.id.tabhost);
 
     }
     /*
     设置viewPager
      */
     private void setViewPager(){
-        List<Fragment> l = new ArrayList<Fragment>(3);
+        List<Fragment> l = new ArrayList<Fragment>();
         l.add(staticFragment);
         l.add(activeFragment);
-        l.add(listFragment);
-        viewPager.setAdapter(new MyFragemntAdapter(getSupportFragmentManager(),l));
+        l.add(threeFragment);
+        l.add(fourFragment);
+        viewPager.setAdapter(new MyFragemntAdapter(getSupportFragmentManager(), l));
         viewPager.setOnPageChangeListener(new MyPageChangeLisenter());
     }
 
@@ -163,6 +167,41 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+    }
+
+    /*
+    设置FragmentTabHost
+     */
+    private void setTabHost(){
+        //定义class数组存放fragment
+        Class fragmentArray[] = {StaticFragment.class, activeFragment.class,ThreeFragment.class,FourFragment.class};
+        //定义tab标题数组
+        String tabTittles[] = {"首页","新闻","发现","朋友"};
+        //定义tabs图片数组
+        int tabDrawables[] = {R.drawable.tab_index_selectror,R.drawable.tab_news_selectror,R.drawable.tab_message_selectror,R.drawable.tab_friend_selectror};
+        /*
+        特别注意，如果FragmentTabHost单独使用，这里的第三个参数为放fragment的layout的id
+                如果FragmentTabHost结合PagerView使用，这里的第三各参数为PagerView的id
+         */
+        tabHost.setup(this, getSupportFragmentManager(), R.id.viewPager);
+        tabHost.setOnTabChangedListener(new FragmentTabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                int positon = tabHost.getCurrentTab();
+                viewPager.setCurrentItem(positon);
+            }
+        });
+        for(int i=0;i<fragmentArray.length;i++){
+            View indactor = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tab_item, null);
+            ImageView imageView = (ImageView)indactor.findViewById(R.id.imageview1);
+            imageView.setImageResource(tabDrawables[i]);
+            TextView textView = (TextView)indactor.findViewById(R.id.textview1);
+            textView.setText(tabTittles[i]);
+            TabSpec tabSpec = tabHost.newTabSpec(tabTittles[i]);
+            tabSpec.setIndicator(indactor);
+            tabHost.addTab(tabSpec, fragmentArray[i], null);
+            tabHost.setTag(i);
+        }
     }
 
     /*
@@ -178,11 +217,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 .setTabListener(new MyTabListener(this,activeFragment.getClass()));
         Tab tab3 = actionBar.newTab().setText("tab3")
                 .setIcon(R.drawable.telecom)
-                .setTabListener(new MyTabListener(this, listFragment.getClass()));
+                .setTabListener(new MyTabListener(this, threeFragment.getClass()));
+        Tab tab4 = actionBar.newTab().setText("tab4")
+                .setIcon(R.drawable.telecom)
+                .setTabListener(new MyTabListener(this, fourFragment.getClass()));
 
         actionBar.addTab(tab1);
         actionBar.addTab(tab2);
         actionBar.addTab(tab3);
+        actionBar.addTab(tab4);
     }
 
     /*
@@ -202,6 +245,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         @Override
         public void onTabSelected(Tab tab, FragmentTransaction ft) {
            viewPager.setCurrentItem(tab.getPosition());
+           tabHost.setCurrentTab(tab.getPosition());
         }
 
         @Override
@@ -226,8 +270,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         @Override
         public void onPageSelected(int position) {
-            final ActionBar actionBar = getActionBar();
-            actionBar.setSelectedNavigationItem(position);
+            actionBar.setSelectedNavigationItem(position);//actionbar的tab与viewpager联动
+            tabHost.setCurrentTab(position);//fragmenttabhost的tab与viewpager联动
         }
 
         @Override

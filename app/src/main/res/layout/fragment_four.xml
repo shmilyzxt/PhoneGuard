@@ -1,11 +1,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shmilyzxt.phoneguard.fragments.StaticFragment"
-    android:background="@android:color/holo_green_light">
+    tools:context="com.example.shmilyzxt.phoneguard.fragments.FourFragment"
+    android:background="@android:color/holo_blue_bright">
 
-    <!-- TODO: Update blank fragment btn_quickoption_selector -->
+    <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="Four" />
 
 </FrameLayout>

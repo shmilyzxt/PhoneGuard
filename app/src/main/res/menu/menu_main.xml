@@ -11,6 +11,7 @@
     <item android:id="@+id/telecom" android:showAsAction="never"
         android:icon="@drawable/telecom"
         android:title="电信"/>
+
     <item android:id="@+id/sig" android:showAsAction="always"
         android:icon="@drawable/sig"
         android:title="4G"
