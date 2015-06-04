@@ -1,0 +1,168 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#e2e2e2" >
+    <!--列表菜单开始-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e2e2e2"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/menu_item_quests"
+                style="@style/MenuItemLayoutStyle" >
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@drawable/drawer_menu_icon_quest"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:gravity="center"
+                    android:text="这是第一个" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#d2d2d2" />
+
+            <LinearLayout
+                android:id="@+id/menu_item_opensoft"
+                style="@style/MenuItemLayoutStyle" >
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@drawable/drawer_menu_icon_opensoft"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="这是第二个" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#d2d2d2" />
+
+            <LinearLayout
+                android:id="@+id/menu_item_blog"
+                style="@style/MenuItemLayoutStyle" >
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@drawable/drawer_menu_icon_blog"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="这是第三个" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#d2d2d2" />
+
+            <LinearLayout
+                android:id="@+id/menu_item_gitapp"
+                style="@style/MenuItemLayoutStyle" >
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@drawable/drawer_menu_icon_gitapp"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="gitapp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#d2d2d2" />
+
+            <LinearLayout
+                android:id="@+id/menu_item_rss"
+                style="@style/MenuItemLayoutStyle"
+                android:visibility="gone" >
+
+                <ImageView
+                    style="@style/MenuItemImageViewStyle"
+                    android:background="@drawable/drawer_menu_icon_rss"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    style="@style/MenuItemTextViewStyle"
+                    android:text="rss" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#d2d2d2"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+    <!--列表菜单结束-->
+    <!--底部开始-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:baselineAligned="false"
+        android:layout_marginBottom="5dip"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/menu_item_setting"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                style="@style/MenuItemImageViewStyle"
+                android:background="@drawable/drawer_menu_icon_setting" />
+
+            <TextView
+                style="@style/MenuItemTextViewStyle"
+                android:textSize="@dimen/text_size_14"
+                android:text="设置" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_item_exit"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                style="@style/MenuItemImageViewStyle"
+                android:background="@drawable/drawer_menu_icon_exit" />
+
+            <TextView
+                style="@style/MenuItemTextViewStyle"
+                android:textSize="@dimen/text_size_14"
+                android:text="退出" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--底部结束-->
+
+</LinearLayout>

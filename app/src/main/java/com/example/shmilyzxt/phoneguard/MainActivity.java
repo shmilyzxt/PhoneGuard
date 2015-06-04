@@ -17,14 +17,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AnalogClock;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ShareActionProvider;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.ActionBar.Tab;
+import android.support.v4.widget.DrawerLayout;
 
 import com.example.shmilyzxt.phoneguard.fragments.FourFragment;
 import com.example.shmilyzxt.phoneguard.fragments.ListFragment;
@@ -47,6 +50,8 @@ public class MainActivity extends FragmentActivity implements ListFragment.OnFra
     private ActionBar actionBar;
     private FragmentTabHost tabHost;
     private FourFragment fourFragment;
+    private DrawerLayout drawerLayout;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,8 @@ public class MainActivity extends FragmentActivity implements ListFragment.OnFra
 
         //初始化控件
         initView();
+        //设置DrawerLayout
+        setDrawerLayout();
         //viewPager实现滑动
         setViewPager();
         //ActionBar的添加(要在viewpager的后面，不知道为什么)
@@ -144,7 +151,17 @@ public class MainActivity extends FragmentActivity implements ListFragment.OnFra
         viewPager = (ViewPager)findViewById(R.id.viewPager);
         actionBar = getActionBar();
         tabHost = (FragmentTabHost)findViewById(R.id.tabhost);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //listView = (ListView)findViewById(R.id.drawer_layout_listvew);
 
+
+    }
+    /*
+    设置drawerLayout(listview)
+     */
+    private void setDrawerLayout(){
+        //String mentItems[] = getResources().getStringArray(R.array.menu_array);
+        //listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mentItems));
     }
     /*
     设置viewPager

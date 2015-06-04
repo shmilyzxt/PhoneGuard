@@ -1,41 +1,40 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:orientation="vertical">
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout">
 
+    <!--drawerlayout的第一个元素默认为显示主内容-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#0fffff"
+        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
         android:orientation="vertical">
-    </LinearLayout>
 
-    <!--pagerView的滑动的layout-->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:id="@+id/fragment_content"
-        android:background="#fff000"
-        android:layout_weight="1">
-
-        <android.support.v4.view.ViewPager
-            android:layout_height="wrap_content"
+        <!--pagerView的滑动的layout-->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:id="@+id/viewPager"
-            android:layout_gravity="center"
-            />
+            android:layout_height="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/fragment_content"
+            android:background="#fff000"
+            android:layout_weight="1">
 
-    </FrameLayout>
+            <android.support.v4.view.ViewPager
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/viewPager"
+                android:layout_gravity="center"
+                />
 
-    <!--底部fragmentTabHost的layout-->
+        </FrameLayout>
 
-
-    <FrameLayout
+        <!--底部fragmentTabHost的layout-->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tabhostContainer">
@@ -45,6 +44,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tabhost"/>
-    </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
 
-</LinearLayout>
+    <!--DrawerLayout里的第二个view为抽屉菜单view-->
+    <fragment
+        android:id="@+id/navigation_drawer"
+        android:name="com.example.shmilyzxt.phoneguard.fragments.DraewrFragment"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        tools:layout="@layout/fragment_draewr" />
+
+
+</android.support.v4.widget.DrawerLayout>
