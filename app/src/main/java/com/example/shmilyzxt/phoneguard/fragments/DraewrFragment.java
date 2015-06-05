@@ -2,6 +2,7 @@ package com.example.shmilyzxt.phoneguard.fragments;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -93,6 +94,9 @@ public class DraewrFragment extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(),"第一个被点",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_item_opensoft:
+                //转到SocketActivity
+                Intent intent = new Intent(getActivity(),SocketActivity.class);
+                getActivity().startActivity(intent);
 
                 break;
             case R.id.menu_item_blog:
